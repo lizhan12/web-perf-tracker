@@ -29,6 +29,7 @@ type BasePageTrace = {
   title?: string;
   // 当前页面URL
   url: string;
+  
 };
 // 用户相关字段基类
 export type BaseUserTrace = {
