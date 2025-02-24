@@ -10,7 +10,7 @@ window.baseTrace = window.webPerfTracker.BaseTrace.init({
     openFech: true, // Enable tracking of fetch requests (e.g., API calls)
     openResource:true, // Enable traceing of script resource
     sendTimer:30 * 1000 // Log sending interval
-    fileList: ["xxx.com", "yyy.cn"] // You can filter out logs from domains that you don't want to collect(e.g yyy.cn)
+    filterUrlList: ["xxx.com", "yyy.cn"] // You can filter out logs from domains that you don't want to collect(e.g yyy.cn)
 });
 ```
 
