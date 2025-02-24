@@ -1,6 +1,6 @@
 {
 	"name": "web-perf-tracker",
-	"version": "1.0.4e [e]",
+	"version": "1.0.4",
 	"description": "",
 	"main": "./dist/cjs/web-perf-tracker.cjs",
 	"module": "./dist/esm/web-perf-tracker.mjs",
