@@ -7,6 +7,8 @@ window.baseTrace = window.Perf.BaseTrace.init({
     url: 'https://xxxxxxx/track.gif', // The endpoint URL to send performance data (e.g., tracking image URL)
     openClick: true, // Enable tracking of click events
     openFech: true, // Enable tracking of fetch requests (e.g., API calls)
+    openResource:true, // Enable traceing of script resource
+    sendTimer:30 * 1000 // Log sending interval
     fileList: ["xxx.com", "yyy.cn"] // You can filter out logs from domains that you don't want to collect(e.g yyy.cn)
 });
 ```

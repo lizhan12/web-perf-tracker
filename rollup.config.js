@@ -10,16 +10,16 @@ export default defineConfig({
 		name: 'Perf',
 		file: './dist/webvital/baseTrace.js',
 		format: 'umd',
-		plugins: [terser()], // 只对
+		plugins: [terser()], 
 	},
 	plugins: [
-		resolve(), // 解析第三方模块
+		resolve(), 
 		commonjs(),
 		typescript({
 			declaration: true,
-			declarationDir: './dist/webvital', // 声明文件输出目录
+			declarationDir: './dist/webvital',
 			rootDir: 'src',
 		}),
 	],
-	/* 你的配置 */
+
 });
