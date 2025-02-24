@@ -1,4 +1,4 @@
-import { BrowserType, type BaseTraceInterface, type TraceAction, type TraceBreadcrumbs, type TraceData, type TraceDataLog, type TraceDataResource, type TraceOptions, type TracePerf, type TraceTypeData } from "../typings/typeing";
+import { BrowserType, TraceDataTypes, type BaseTraceInterface, type TraceAction, type TraceBreadcrumbs, type TraceData, type TraceDataLog, type TraceDataResource, type TraceOptions, type TracePerf, type TraceTypeData } from "../typings/typeing";
 export declare class BaseTrace implements BaseTraceInterface {
     perfData: TracePerf;
     resources: TraceDataResource[];
@@ -18,6 +18,12 @@ export declare class BaseTrace implements BaseTraceInterface {
     isOpenFetchAfter: boolean | undefined;
     onGlobalClick(): void;
     saveBreadcrumb(data: TraceAction): void;
+    /**
+     * 立即发送
+     * @param name
+     * @param type
+     */
+    sendImmediate(name: string, type: TraceDataTypes): void;
     /**
      * 构造函数，初始化性能观察者
      * @param options 初始化选项

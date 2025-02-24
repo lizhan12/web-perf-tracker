@@ -2,6 +2,8 @@ import {
   BreadcrumbTypes,
   BreadcrumbsCategorys,
   TraceDataSeverity,
+  TraceDataTypes,
+  TraceTypeData,
 } from "../typings/typeing";
 import { BaseTrace, getTimestamp } from "./baseTrace";
 const { fetch: originFetch } = window;
@@ -184,7 +186,9 @@ export function initFetch(traceSdk: BaseTrace) {
         const prix = error.url?.split("?")[0] || "";
         const url = prix?.split("//")[1]?.split('/')[0];
 
-        if (!traceSdk.filterUrlList.includes(url))
+
+        if (!traceSdk.filterUrlList.includes(url)){
+       
           traceSdk.saveBreadcrumb({
             name: error.name || "",
             level: TraceDataSeverity.Error,
@@ -204,6 +208,10 @@ export function initFetch(traceSdk: BaseTrace) {
               // },
             },
           });
+          traceSdk.sendImmediate(error.name || "",  TraceDataTypes.HTTP)
+        }
+          
+     
       },
       onBefore: (props: OnBeforeProps) => {
         const prix = props.url?.split("?")[0] || "";

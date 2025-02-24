@@ -8,7 +8,7 @@ import {
   TraceLevelType,
   TraceTypes,
   type BaseTraceInterface,
-  
+
   type TraceAction,
   type TraceBreadcrumbs,
   type TraceData,
@@ -30,7 +30,7 @@ function detectPlatform() {
   platform.isMobile =
     /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(
       userAgent.toLowerCase()
-      
+
     );
 
   // 检测是否是PC端
@@ -104,6 +104,27 @@ export class BaseTrace implements BaseTraceInterface {
       this.breadcrumb.shift();
     }
   }
+  /**
+   * 立即发送
+   * @param name 
+   * @param type 
+   */
+  public sendImmediate(name: string, type: TraceDataTypes) {
+    const traceData: TraceTypeData = {
+      dataId: hashCode(type + TraceDataSeverity.Error + name),
+      level: TraceDataSeverity.Error,
+      name,
+      // level:
+      message: "",
+      time: getTimestamp(),
+      type: type,
+      stack: null,
+    }
+    const data = this.setTraceData(traceData);
+    sendByImg(this.options.url, data);
+
+  }
+
   /**
    * 构造函数，初始化性能观察者
    * @param options 初始化选项
@@ -187,6 +208,7 @@ export class BaseTrace implements BaseTraceInterface {
     this.saveBreadcrumb({
       name: "customer-log",
       level: log.level,
+      // dataId: log.dataId,
       type: dataTypes2BreadcrumbsType(log.type),
       category: dataCategory2BreadcrumbsCategory(log.type),
       message: log.message,
@@ -344,7 +366,7 @@ export class BaseTrace implements BaseTraceInterface {
     if (!isResTarget) {
       // 非资源错误
       const traceData: TraceTypeData = {
-        dataId: 0,
+        dataId: hashCode("script-error" + TraceDataSeverity.Error),
         name: "script-error",
         level: TraceDataSeverity.Error,
         message: event.message,
@@ -352,7 +374,7 @@ export class BaseTrace implements BaseTraceInterface {
         type: TraceDataTypes.JAVASCRIPT,
         stack: event.error?.stack ?? null,
       };
-      this.resources.push(traceData);
+      // this.resources.push(traceData);
       this.breadcrumb.push({
         name: event.error.name,
         type: BreadcrumbTypes.CODE_ERROR,
@@ -362,8 +384,10 @@ export class BaseTrace implements BaseTraceInterface {
         stack: event.error.stack,
         time: getTimestamp(),
       });
+      // this.setTraceData(traceData)
       //@ts-ignore
-      this.queue.push(traceData);
+      // this.queue.push(traceData);
+      this.sendImmediate(event.error?.name || "", TraceDataTypes.JAVASCRIPT)
     } else {
       // 资源加载错误
       const url = target.getAttribute("src") || target.getAttribute("href");
@@ -377,9 +401,9 @@ export class BaseTrace implements BaseTraceInterface {
           type: TraceDataTypes.RESOURCE,
           stack: [url],
         };
-        this.resources.push(traceData);
+        // this.resources.push(traceData);
         //@ts-ignore
-        this.queue.push(traceData);
+        // this.queue.push(traceData);
         this.breadcrumb.push({
           name: traceData.name,
           type: BreadcrumbTypes.RESOURCE,
@@ -389,6 +413,7 @@ export class BaseTrace implements BaseTraceInterface {
           time: getTimestamp(),
           request: { url },
         });
+        this.sendImmediate(event.error?.name || '', TraceDataTypes.RESOURCE)
       }
 
     }
@@ -447,7 +472,7 @@ function getPerfLevel(arg0: TracePerf): TraceLevelType {
   return TraceLevelType.info;
 }
 
-function sendByImg(url: any, data: TraceData) {
+function sendByImg(url: any, data: TraceData | TracePerf) {
 
   const spliceStr = url.indexOf('?') === -1 ? '?' : '&'
   const imageUrl = `${url}${spliceStr}data=${encodeURIComponent(safeStringify(data))}`;

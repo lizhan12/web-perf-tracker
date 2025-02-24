@@ -1,8 +1,9 @@
-
-####  Description
+#### Description
 
 ```
-window.baseTrace = window.Perf.BaseTrace.init({
+import  {BaseTrace} from 'web-perf-tracker'
+or
+window.baseTrace = window.webPerfTracker.BaseTrace.init({
     appId: 'appid', // Your application ID, used to identify the app
     url: 'https://xxxxxxx/track.gif', // The endpoint URL to send performance data (e.g., tracking image URL)
     openClick: true, // Enable tracking of click events
@@ -12,9 +13,11 @@ window.baseTrace = window.Perf.BaseTrace.init({
     fileList: ["xxx.com", "yyy.cn"] // You can filter out logs from domains that you don't want to collect(e.g yyy.cn)
 });
 ```
+
 #### Log Format
 
- 1. Performance
+1.  Performance
+
 ```
 {
     "id": "67bc10d9c3d67a60c66717bc", // Unique identifier for the log entry
@@ -47,7 +50,9 @@ window.baseTrace = window.Perf.BaseTrace.init({
     "pid": "499080161" // Product ID or identifier for the specific product related to the log
 }
 ```
+
 2.Code error
+
 ```
 {
     "id": "67bc0fefc3d67a60c66717b7", // Unique identifier for the log entry
@@ -80,7 +85,9 @@ window.baseTrace = window.Perf.BaseTrace.init({
 }
 
 ```
+
 3. fetch error
+
 ```
 ...
 "breadcrumbs": [
@@ -173,7 +180,7 @@ import { defineConfig } from 'rollup';
 import typescript from '@rollup/plugin-typescript';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
-import terser from '@rollup/plugin-terser'; 
+import terser from '@rollup/plugin-terser';
 
 export default defineConfig({
 	input: './src/webvital/baseTrace.ts',
@@ -181,10 +188,10 @@ export default defineConfig({
 		name: 'Perf',
 		file: './dist/webvital/baseTrace.js',
 		format: 'umd',
-		plugins: [terser()], 
+		plugins: [terser()],
 	},
 	plugins: [
-		resolve(), 
+		resolve(),
 		commonjs(),
 		typescript({
 			declaration: true,

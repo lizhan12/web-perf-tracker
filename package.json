@@ -1,24 +1,41 @@
 {
-  "name": "sdk",
-  "version": "1.0.0",
-  "description": "",
-  "main": "./src/baseTrace.js",
-  "type": "module",
-  "scripts": {
-    "build": "rollup --config"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@rollup/plugin-terser": "^0.4.4",
-    "rollup": "^4.22.4",
-    "tslib": "^2.7.0",
-    "typescript": "^5.6.2",
-    "web-vitals": "^4.2.3"
-  },
-  "devDependencies": {
-    "@rollup/plugin-commonjs": "^26.0.1",
-    "@rollup/plugin-node-resolve": "^15.2.4",
-    "@rollup/plugin-typescript": "^12.1.0"
-  }
+	"name": "web-perf-tracker",
+	"version": "1.0.4e [e]",
+	"description": "",
+	"main": "./dist/cjs/web-perf-tracker.cjs",
+	"module": "./dist/esm/web-perf-tracker.mjs",
+	"browser": "./dist/umd/web-perf-tracker.umd.js",
+	"types": "./dist/esm/types/webvital/baseTrace.d.ts",
+	"type": "module",
+	"exports": {
+		".": {
+			"types": "./dist/esm/types/webvital/baseTrace.d.ts",
+			"import": "./dist/esm/web-perf-tracker.mjs",
+			"require": "./dist/cjs/web-perf-tracker.cjs",
+			"browser": "./dist/umd/web-perf-tracker.umd.js",
+			"umd": "./dist/umd/web-perf-tracker.umd.js"
+		}
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/lizhan12/web-perf-tracker"
+	},
+	"scripts": {
+		"build-prod": "rollup --config",
+		"build-esm": "rollup --config ./rollup.config.esm.js",
+		"build": "npm run build-prod && npm run build-esm"
+	},
+	"author": "",
+	"license": "ISC",
+	"dependencies": {},
+	"devDependencies": {
+		"@rollup/plugin-commonjs": "^26.0.1",
+		"@rollup/plugin-node-resolve": "^15.2.4",
+		"@rollup/plugin-typescript": "^12.1.0",
+		"@rollup/plugin-terser": "^0.4.4",
+		"rollup": "^4.22.4",
+		"tslib": "^2.7.0",
+		"typescript": "^5.6.2",
+		"web-vitals": "^4.2.3"
+	}
 }
