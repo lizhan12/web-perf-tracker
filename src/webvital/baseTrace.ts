@@ -8,6 +8,7 @@ import {
   TraceLevelType,
   TraceTypes,
   type BaseTraceInterface,
+  
   type TraceAction,
   type TraceBreadcrumbs,
   type TraceData,
@@ -29,6 +30,7 @@ function detectPlatform() {
   platform.isMobile =
     /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(
       userAgent.toLowerCase()
+      
     );
 
   // 检测是否是PC端

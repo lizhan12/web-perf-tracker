@@ -2,7 +2,7 @@
   "name": "sdk",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./src/baseTrace.js",
   "type": "module",
   "scripts": {
     "build": "rollup --config"
