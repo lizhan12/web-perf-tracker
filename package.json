@@ -1,12 +1,18 @@
 {
 	"name": "web-perf-tracker",
-	"version": "1.0.5",
-	"description": "",
+	"version": "1.1.0",
+	"description": "This is an SDK for full-stack frontend log collection, covering performance metrics such as LCP and CLS, error logging (including code errors and API failures), and user interaction tracking.",
 	"main": "./dist/cjs/web-perf-tracker.cjs",
 	"module": "./dist/esm/web-perf-tracker.mjs",
 	"browser": "./dist/umd/web-perf-tracker.umd.js",
 	"types": "./dist/esm/types/webvital/baseTrace.d.ts",
 	"type": "module",
+	"keywords": [
+    "perf",
+    "web-vitals",
+    "vitals",
+    "performance"
+  ],
 	"exports": {
 		".": {
 			"types": "./dist/esm/types/webvital/baseTrace.d.ts",

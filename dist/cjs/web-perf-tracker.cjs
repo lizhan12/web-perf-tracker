@@ -152,7 +152,7 @@ function round(value, t) {
     return Math.round(value * 100) / 100;
 }
 function mapMetric(metric) {
-    const isWebVital = ['FCP', 'TTFB', 'LCP', 'CLS', 'FID'].indexOf(metric.name) !== -1;
+    const isWebVital = ['FCP', 'TTFB', 'LCP', 'CLS', 'FID', "INP"].indexOf(metric.name) !== -1;
     return {
         [metric.name]: isWebVital ? round(metric.value, metric.name === 'CLS' ? 4 : 0) : metric.value,
         [`${metric.name}Rating`]: metric.rating
