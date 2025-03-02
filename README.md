@@ -32,6 +32,8 @@ window.baseTrace = window.webPerfTracker.BaseTrace.init({
         "TTFBRating": "good", // Rating of the TTFB performance (e.g., 'good', 'bad', etc.)
         "FCP": 929.8, // First Contentful Paint (in milliseconds)
         "FCPRating": "good", // Rating of the FCP performance (e.g., 'good', 'bad', etc.)
+        "INP":8, // // Interaction to Next Paint (in milliseconds)
+        "INPRating": "good", // Rating of the INP performance (e.g., 'good', 'bad', etc.)
         "LCP": 929.8, // Largest Contentful Paint (in milliseconds)
         "LCPRating": "good", // Rating of the LCP performance (e.g., 'good', 'bad', etc.)
         "CLS": 0, // Cumulative Layout Shift score
